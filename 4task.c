@@ -14,7 +14,7 @@ int main(int argc, char* argv[], char *envp[]) {
 			exit(-1);
 		}
 	
-		execl("argv[1]", "hello", "from", "task4", NULL);
+		(void) execle("/bin/cat", "/bin/cat", argv[1], 0, envp);
 		
 		printf("Exec error");
 		exit(-1);
