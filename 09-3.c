@@ -40,6 +40,11 @@ int main() {
 		printf("Pipe error\n");
 		exit(-1);
 	}
+
+	if ((key = ftok(pathname, 0)) < 0) {
+		printf("Key generation error\n");
+		exit(-1);
+	}
 	
 	if ((semid = semget(key, 1, 0666 | IPC_CREAT | IPC_EXCL)) < 0) {
 		if (errno != EEXIST) {
