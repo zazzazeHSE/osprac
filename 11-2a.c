@@ -12,7 +12,7 @@ int main() {
 
     key_t key;
 
-    int len, maxlen;
+    int len;
 
     struct mymsgbuf {
         long mtype;
@@ -34,7 +34,7 @@ int main() {
 
     printf("Start passing messages\n");
     for (int i = 0; i < 5; ++i) {
-        mybuf.mtype = i;
+        mybuf.mtype = 1;
         mybuf.info.sinfo = 2222;
 		mybuf.info.finfo = 22.22;
         len = sizeof(mybuf.info);
@@ -49,9 +49,9 @@ int main() {
     printf("End of message passing\n");
     printf("Start getting messages\n");
 
-    for (int i = 0; i < 5; ++i) {
-        maxlen = sizeof(mybuf.info);
-        if ((len = msgrcv(msqid, (struct msgbuf *) &mybuf, maxlen, 2, 0)) < 0) {
+    for (int i = 0; i < 6; ++i) {
+        len = sizeof(mybuf.info);
+        if (msgrcv(msqid, (struct msgbuf *) &mybuf, len, 2, 0) < 0) {
             printf("Can't receive message from queue\n");
             exit(-1);
         }
