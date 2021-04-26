@@ -47,7 +47,7 @@ int main(void)
       msgctl(msqid, IPC_RMID, (struct msqid_ds *)NULL);
       exit(0);
     }
-    printf("message type = %ld, sinfo = %s finfo=%f\n", mybuf.mtype, mybuf.info.sinfo, mybuf.info.finfo);
+    printf("message type = %ld, sinfo = %i finfo=%f\n", mybuf.mtype, mybuf.info.sinfo, mybuf.info.finfo);
   }
   return 0;
 }
