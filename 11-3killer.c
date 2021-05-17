@@ -41,8 +41,8 @@ struct clientmsgbuf {
     printf("killing\n");
 
     len = sizeof(clientbuf.info);
-    if (msgsnd(msqid, &clientbuf, len, 0) < 0) {
-        printf("Can\'t send message to queue\n");
+	if (msgsnd(msqid, (struct clientmsgbuf *) &clientbuf, len, 0) < 0) {        
+printf("Can\'t send message to queue\n");
         msgctl(msqid, IPC_RMID, (struct msqid_ds *) NULL);
         exit(-1);
     }
