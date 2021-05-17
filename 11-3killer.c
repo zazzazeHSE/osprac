@@ -38,7 +38,7 @@ struct clientmsgbuf {
     clientbuf.info.number = 0;
     clientbuf.info.pid = getpid();
 
-    printf("Убиваю сервер....");
+    printf("killing\n");
 
     len = sizeof(clientbuf.info);
     if (msgsnd(msqid, &clientbuf, len, 0) < 0) {

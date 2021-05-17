@@ -17,6 +17,13 @@ int main() {
 
     int len, maxlen;
 
+struct clientmsgbuf {
+        long mtype;
+        struct {
+            pid_t pid;
+            float number;
+        } info;
+    } clientbuf;
 
     struct sermsgbuf {
         long mtype;
