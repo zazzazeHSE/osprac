@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
-#inlude <sys/file.h>
+#include <sys/file.h>
 #include <errno.h>
 int main() {
     int msqid;
@@ -17,13 +17,6 @@ int main() {
 
     int len, maxlen;
 
-    struct clientmsgbuf {
-        long mtype;
-        struct {
-            pid_t pid;
-            float number;
-        } info;
-    } clientbuf;
 
     struct sermsgbuf {
         long mtype;

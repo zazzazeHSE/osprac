@@ -16,16 +16,14 @@ int main(void)
     key_t  key;
     int len, maxlen;
 
+struct clientmsgbuf {
+        long mtype;
+        struct {
+            pid_t pid;
+            float number;
+        } info;
+    } clientbuf;
 	
-struct client
-{
-    long mtype;
-    struct
-    {
-        pid_t pid;
-        float number;
-    } info;
-} clientbuf;
     if ((key = ftok(pathname,0)) < 0) {
         printf("Can\'t generate key\n");
         exit(-1);
