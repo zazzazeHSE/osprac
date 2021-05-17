@@ -47,7 +47,7 @@ struct clientmsgbuf {
 
     while (1) {
         maxlen = sizeof(clientbuf.info);
-        if (len = msgrcv(msqid, (struct clientmsgbuf *) &clientbuf, maxlen, 1, 0) < 0) {
+        if (len = msgrcv(msqid, (struct clientmsgbuf *) &clientbuf, maxlen, -2, 0) < 0) {
             printf("Can't receive message from queue\n");
             exit(-1);
         }
