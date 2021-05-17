@@ -6,7 +6,8 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
-
+#inlude <sys/file.h>
+#include <errno.h>
 int main() {
     int msqid;
 
@@ -30,7 +31,10 @@ int main() {
             float number;
         } info;
     } serverbuf;
-
+	
+	int pidfile = open("11-3b.c", O_CREAT | O_RDWR, 0666);
+	int rc = flock(pidfile, LOCK_EX | LOCK_NB);
+	if (!rc) {
     if ((key = ftok(pathname, 0)) < 0) {
         printf("Can't generate key\n");
         exit(-1);
@@ -47,6 +51,11 @@ int main() {
             printf("Can't receive message from queue\n");
             exit(-1);
         }
+	
+		if (clientbuf.mtype == 2) {
+			printf("I just killed\n");
+			exit(-1);
+		}
 
         printf("Client %d: %.2f\n", clientbuf.info.pid, clientbuf.info.number);
 
@@ -61,6 +70,9 @@ int main() {
             exit(-1);
         }
         printf("Sent response\n");
-    }
+    } 
+	} else {
+		printf("Server is running");
+	}
     return 0;
 }
