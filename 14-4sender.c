@@ -4,9 +4,16 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+int needNext = 1;
+
+void handle(int sig) {
+	needNext = 0;
+}
+
 int main() {
   pid_t my_pid, to_pid;
   int value;
+  (void)signal(SIGUSR1, handle);
 
   my_pid = getpid();
   printf("Sender pid = %d\n", my_pid);
@@ -18,6 +25,7 @@ int main() {
   scanf("%d", &value);
 
   int byte = 1;
+  while (needNext);
   while (byte != 0) {
     if ((value & byte) == 0) {
       kill(to_pid, SIGUSR1);
@@ -25,6 +33,7 @@ int main() {
       kill(to_pid, SIGUSR2);
     }
     byte = byte << 1;
-	for (int i = 0; i < 100000000; ++i);
+	needNext = 1;
+	while(needNext);
   }
 }
