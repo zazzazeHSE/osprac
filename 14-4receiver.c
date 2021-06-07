@@ -25,7 +25,7 @@ int main(void) {
   my_pid = getpid();
   printf("Receiver pid = %d\n", my_pid);
 
-  printf("Sender pid = : ");
+  printf("Sender pid = ");
   scanf("%d", &sender_pid);
 
   while (1) {
