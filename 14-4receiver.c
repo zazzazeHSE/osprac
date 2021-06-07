@@ -6,16 +6,16 @@
 int value;
 int byte;
 
-void zero(int nsig) {
+void zero(int sig) {
   byte <<= 1;
 }
 
-void one(int nsig) {
+void one(int sig) {
   value |= byte;
   byte <<= 1;
 }
 
-int main(void) {
+int main() {
   pid_t my_pid, sender_pid;
   value = 0;
   byte = 1;

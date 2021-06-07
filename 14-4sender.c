@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-int main(void) {
+int main() {
   pid_t my_pid, to_pid;
   int value;
 
